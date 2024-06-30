@@ -29,7 +29,7 @@ const Login = () => {
     onSubmit: async(values) => {
         try {
             const userData = {
-                username: values.username,
+                email: values.email,
                 password: values.password,
             };
           

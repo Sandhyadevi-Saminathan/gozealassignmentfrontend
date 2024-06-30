@@ -32,8 +32,9 @@ const Login = () => {
                 username: values.username,
                 password: values.password,
             };
-            console.log("Logged In")
+          
             await dispatch(loginUser(values));
+            console.log("Logged In")
             alert('Logged in successfully!'); 
             // Navigate to the project list page after successful login
             navigate('/projectlist'); 

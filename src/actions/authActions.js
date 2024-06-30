@@ -26,9 +26,11 @@ export const loginUser = (userData) => async (dispatch) => {
   try {
      // Send a POST request to the login endpoint with user data
     const response = await axios.post('https://gozealassigmentbackend.onrender.com/login', userData);
+    console.log(response)
       // Dispatch success action with the response data
     dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
     // Return the response data
+    console.log(response.data)
     return response.data;
   } catch (error) {
     // Handle login failure

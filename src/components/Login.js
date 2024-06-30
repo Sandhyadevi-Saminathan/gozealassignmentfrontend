@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import { loginUser } from './actions/authActions'; 
+import { loginUser } from '../actions/authActions'; 
 import { useNavigate } from 'react-router-dom';
 
 
@@ -28,6 +28,11 @@ const Login = () => {
     },
     onSubmit: async(values) => {
         try {
+            const userData = {
+                username: values.username,
+                password: values.password,
+            };
+            console.log("Logged In")
             await dispatch(loginUser(values));
             alert('Logged in successfully!'); 
             // Navigate to the project list page after successful login

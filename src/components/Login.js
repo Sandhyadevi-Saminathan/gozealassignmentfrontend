@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { loginUser } from '../actions/authActions'; 
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
-const Login = () => {
+const Login = ({ loginUser }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Access navigate function
 
@@ -98,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect(null, { loginUser })(Login);

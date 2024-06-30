@@ -1,6 +1,9 @@
 
 import axios from 'axios';
 
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
 // Function to register a user
 export const registerUser = (userData) => async (dispatch) => {
   try {
@@ -28,7 +31,7 @@ export const loginUser = (userData) => async (dispatch) => {
     const response = await axios.post('https://gozealassigmentbackend.onrender.com/login', userData);
     console.log(response)
       // Dispatch success action with the response data
-    dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
+      dispatch({ type: LOGIN_SUCCESS, payload: response.data });
     // Return the response data
     console.log(response.data)
     return response.data;
@@ -39,7 +42,8 @@ export const loginUser = (userData) => async (dispatch) => {
       status: error.response ? error.response.status : null,
       data: error.response ? error.response.data : null,
     };
-    dispatch({ type: 'LOGIN_FAILURE', payload: errorPayload });
+    dispatch({ type: LOGIN_FAILURE, payload: error.message });
     console.log('Error during login:', error);
+    throw error; 
   }
 };

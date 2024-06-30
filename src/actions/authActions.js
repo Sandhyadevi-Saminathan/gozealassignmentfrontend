@@ -22,7 +22,7 @@ export const registerUser = (userData) => async (dispatch) => {
 
 // Function to log in a user
 export const loginUser = (userData) => async (dispatch) => {
- 
+  console.log(userData)
   try {
      // Send a POST request to the login endpoint with user data
     const response = await axios.post('https://gozealassigmentbackend.onrender.com/login', userData);
@@ -40,6 +40,6 @@ export const loginUser = (userData) => async (dispatch) => {
       data: error.response ? error.response.data : null,
     };
     dispatch({ type: 'LOGIN_FAILURE', payload: errorPayload });
-    console.error('Error during login:', error);
+    console.log('Error during login:', error);
   }
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
-import Login from './components/Login';
+import Login from './Login';
 import Register from './components/Register';
 import ProjectList from './components/ProjectList';
 import EditProject from './components/EditProject';

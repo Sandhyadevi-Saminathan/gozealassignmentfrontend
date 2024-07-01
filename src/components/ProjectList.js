@@ -5,6 +5,7 @@ import { addProject, fetchUserProjects } from '../actions/projectActions';
 import { useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; 
+import { useAuth } from '../AuthContext';
 
 const ProjectList = () => {
   const [showForm, setShowForm] = useState(false); // State to toggle form visibility
@@ -41,7 +42,7 @@ const ProjectList = () => {
       dueDate: '',
       description: '',
       status: 'Open',
-      userId: userId,
+      //userId: userId,
     },
     validate: values => {
       const errors = {};
@@ -72,7 +73,7 @@ const ProjectList = () => {
      await dispatch(addProject(values)); 
      resetForm(); // Reset the form after successful submission
       setShowForm(false);
-      dispatch(fetchProjects());// Re-fetch project list after adding new one
+     // dispatch(fetchProjects());// Re-fetch project list after adding new one
     },
   
   });

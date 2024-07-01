@@ -13,7 +13,7 @@ import {
 export const fetchProjects = () => async dispatch => {
   try {
     // Send a GET request to the projects endpoint
-    const response = await axios.get('https://gozealassigmentbackend.onrender.com/project');
+    const response = await axios.get('http://localhost:8000/project');
     console.log(response)
       // Dispatch success action with the response data
     dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: response.data });

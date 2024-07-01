@@ -42,7 +42,7 @@ const Login = () => {
 
         if (response && response.token) {
           console.log("Logged In");
-          window.localStorage.setItem("token", userData.data.token);
+         
           window.localStorage.setItem("ID", response.data.user._id)
           alert('Logged in successfully!');
           navigate('/projectlist');

@@ -9,13 +9,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ProjectList = () => {
   const [showForm, setShowForm] = useState(false); // State to toggle form visibility
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   const projects = useSelector(state => state.projects.projects); // Get projects from Redux store
 
  
 
   useEffect(() => {
     dispatch(fetchProjects());
-    
+    setLoading(false)
   }, [dispatch]);
 
   const formik = useFormik({
@@ -61,7 +62,9 @@ const ProjectList = () => {
   });
 
 
-
+  if (loading) {
+    return <h2 className="text-center mt-5">Loading...</h2>; // Display a loading message centered
+  }
   return (
     <div className="container">
      

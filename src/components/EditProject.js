@@ -57,7 +57,9 @@ const EditProject = () => {
  // Handle form submission
   const handleSubmit = async e => {
     e.preventDefault();
-    dispatch(updateProject(projectId, formData));
+    alert("Changes Saved Successfully")
+    await dispatch(updateProject(projectId, formData));
+    dispatch(fetchProject());// Re-fetch project list after adding new one
     navigate('/projectlist');
   };
   

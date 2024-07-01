@@ -70,7 +70,8 @@ const ProjectList = () => {
         await dispatch(addProject(projectWithUserId)); // Dispatch addProject action with form values
         resetForm(); // Reset the form after successful submission
         setShowForm(false); // Hide the form after submission
-        // Optionally, you can refetch projects here if needed
+        // refetch projects here if needed
+        await dispatch(fetchUserProjects(ID));
       } catch (error) {
         console.error('Error adding project:', error);
       }
@@ -88,7 +89,7 @@ const ProjectList = () => {
   return (
     <div className="container">
       {/* Create New Project Button */}
-      {(projects.length === 0 || showForm) && (
+      {(projects.length === 0 && !showForm) && (
         <div className="text-center mb-3">
           <button
             className="btn btn-primary mt-4"

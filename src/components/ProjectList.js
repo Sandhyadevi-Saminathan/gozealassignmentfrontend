@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addProject, deleteProject, fetchUserProjects } from '../actions/projectActions';
+import { addProject, fetchUserProjects } from '../actions/projectActions';
 import { useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { FaEdit, FaTrashAlt } from 'react-icons/fa'; // Import icons for edit and delete
+
 
 const ProjectList = () => {
   const [showForm, setShowForm] = useState(false); // State to toggle form visibility
@@ -82,14 +82,7 @@ const ProjectList = () => {
     return <h2 className="text-center mt-5">Loading...</h2>;
   }
 
-  // Delete a project
-  const handleDeleteProject = async (projectId) => {
-    try {
-      await dispatch(deleteProject(projectId));
-    } catch (error) {
-      console.error('Error deleting project:', error);
-    }
-  };
+ 
 
   // Render the ProjectList component with conditional rendering based on projects and form visibility
   return (
@@ -262,7 +255,7 @@ const ProjectList = () => {
                     <th style={{ width: '15%' }}>Start Date</th>
                     <th style={{ width: '15%' }}>Due Date</th>
                     <th style={{ width: '20%' }}>Status</th>
-                    <th style={{ width: '10%' }}>Actions</th> {/* Column for edit and delete buttons */}
+                   
                   </tr>
                 </thead>
                 <tbody>
@@ -290,19 +283,7 @@ const ProjectList = () => {
                           {project.status}
                         </div>
                       </td>
-                      <td>
-                        {/* Edit Button */}
-                        <Link to={`/edit/${project._id}`} className="btn btn-sm btn-outline-primary mr-2">
-                          <FaEdit /> Edit
-                        </Link>
-                        {/* Delete Button */}
-                        <button
-                          onClick={() => handleDeleteProject(project._id)}
-                          className="btn btn-sm btn-outline-danger"
-                        >
-                          <FaTrashAlt /> Delete
-                        </button>
-                      </td>
+                     
                     </tr>
                   ))}
                 </tbody>

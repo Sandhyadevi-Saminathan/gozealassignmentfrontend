@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false); // Loading state
+ 
 
   const formik = useFormik({
     initialValues: {
@@ -41,6 +42,8 @@ const Login = () => {
 
         if (response && response.token) {
           console.log("Logged In");
+          window.localStorage.setItem("token", userData.data.token);
+          window.localStorage.setItem("ID", response.data.user._id)
           alert('Logged in successfully!');
           navigate('/projectlist');
           resetForm(); // Reset form after successful login

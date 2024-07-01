@@ -5,35 +5,31 @@ import { addProject, fetchUserProjects } from '../actions/projectActions';
 import { useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; 
-import { useAuth } from '../AuthContext';
+
 
 const ProjectList = () => {
   const [showForm, setShowForm] = useState(false); // State to toggle form visibility
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const projects = useSelector(state => state.projects.projects); // Get projects from Redux store
-  const { user } = useAuth();
+  const ID = localStorage.getItem('ID');
  
+  
+
+
   useEffect(() => {
-    if (user) {
-      dispatch(fetchUserProjects(user.userId)); // Fetch projects based on userId
-    }
-  }, [dispatch, user]);
+    const fetchData = async () => {
+      try {
+        await dispatch(fetchUserProjects(ID));
+        setLoading(false); // Set loading to false after fetching projects
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setLoading(false); // Ensure loading state is set to false on error too
+      }
+    };
 
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       await dispatch(fetchUserProjects(userId));
-  //       setLoading(false); // Set loading to false after fetching projects
-  //     } catch (error) {
-  //       console.error('Error fetching projects:', error);
-  //       setLoading(false); // Ensure loading state is set to false on error too
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [dispatch, userId]);
+    fetchData();
+  }, [dispatch, ID]);
 
   const formik = useFormik({
     initialValues: {
@@ -42,7 +38,7 @@ const ProjectList = () => {
       dueDate: '',
       description: '',
       status: 'Open',
-      //userId: userId,
+      userId: ID,
     },
     validate: values => {
       const errors = {};

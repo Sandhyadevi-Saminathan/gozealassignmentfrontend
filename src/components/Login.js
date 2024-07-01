@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-const Login = ({ loginUser }) => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Access navigate function
 
@@ -99,4 +99,4 @@ const Login = ({ loginUser }) => {
   );
 };
 
-export default connect(null, { loginUser })(Login);
+export default Login;

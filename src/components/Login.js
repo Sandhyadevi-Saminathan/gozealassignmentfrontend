@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = React.useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false); // Loading state
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +28,8 @@ const Login = () => {
     },
     onSubmit: async (values, { resetForm }) => {
       setErrorMessage(null); // Clear previous errors
+      setLoading(true); // Set loading to true when submitting
+
       try {
         const userData = {
           email: values.email,
@@ -34,6 +37,8 @@ const Login = () => {
         };
         
         const response = await dispatch(loginUser(userData));
+        setLoading(false); // Set loading to false after fetching data
+
         if (response && response.token) {
           console.log("Logged In");
           alert('Logged in successfully!');
@@ -42,14 +47,9 @@ const Login = () => {
           throw new Error('Login failed, please check your credentials.');
         }
       } catch (error) {
+        setLoading(false); // Set loading to false if there's an error
         setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
         console.log('Error during login:', error);
-
-        // Hide error message after 10 seconds
-        setTimeout(() => {
-          setErrorMessage(null);
-          resetForm();
-        }, 10000);
       }
     },
   });
@@ -64,8 +64,14 @@ const Login = () => {
             </div>
             {/* Error message */}
             {errorMessage && (
-              <div className="alert alert-danger mt-3" style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
+              <div className="alert alert-danger mt-3 ml-5" style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
                 {errorMessage}
+              </div>
+            )}
+            {/* Loading message */}
+            {loading && (
+              <div className="alert alert-info mt-3 ml-5" style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
+                <span style={{ filter: 'blur(8px)' }}>Logging in...</span>
               </div>
             )}
             {/* Login form */}
@@ -81,6 +87,7 @@ const Login = () => {
                   value={formik.values.email}
                   placeholder="Enter your Email"
                   style={{ border: '2px solid skyblue' }}
+                  disabled={loading} // Disable input during loading
                 />
                 <span className="text-danger">{formik.errors.email}</span>
               </div>
@@ -95,11 +102,14 @@ const Login = () => {
                   value={formik.values.password}
                   placeholder="Enter your password"
                   style={{ border: '2px solid skyblue' }}
+                  disabled={loading} // Disable input during loading
                 />
                 <span className="text-danger">{formik.errors.password}</span>
               </div>
               <div className="form-group">
-                <button type="submit" className="btn btn-info rounded col-lg-12 mt-4">Log in</button>
+                <button type="submit" className="btn btn-info rounded col-lg-12 mt-4" disabled={loading}>
+                  {loading ? 'Logging in...' : 'Log in'}
+                </button>
               </div>
               <hr />
             </form>

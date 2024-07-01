@@ -15,7 +15,7 @@ const BASE_URL = 'https://gozealassigmentbackend.onrender.com';
 export const fetchUserProjects = (userId) => async dispatch => {
   try {
     // Send a GET request to the projects endpoint
-    const response = await axios.get(`${BASE_URL}/api/projects/user-projects/${userId}`);
+    const response = await axios.get(`${BASE_URL}/project/user-projects/${userId}`);
     console.log(response)
       // Dispatch success action with the response data
       dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: response.data });
@@ -53,7 +53,7 @@ export const updateProject = (projectId, projectData) => async dispatch => {
 };
 
 // Function to add a new project
-// Add a new project
+
 export const addProject = (newProject) => async (dispatch) => {
   try {
       const response = await axios.post(`${BASE_URL}/api/projects/`, newProject);

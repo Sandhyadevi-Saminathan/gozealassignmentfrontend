@@ -23,7 +23,7 @@ const EditProject = () => {
 
    // Fetch the project details when the component mounts or projectId changes
   useEffect(() => {
-    dispatch(fetchProject(projectId));
+    dispatch(fetchUserProjects(projectId));
   }, [dispatch, projectId]);
 
    // Populate the form with the project data once it's fetched
@@ -59,7 +59,7 @@ const EditProject = () => {
     e.preventDefault();
     alert("Changes Saved Successfully")
     await dispatch(updateProject(projectId, formData));
-    dispatch(fetchProject());// Re-fetch project list after adding new one
+    dispatch(fetchUserProjects());// Re-fetch project list after adding new one
     navigate('/projectlist');
   };
   

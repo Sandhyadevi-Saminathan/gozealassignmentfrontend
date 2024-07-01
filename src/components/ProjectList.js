@@ -109,7 +109,7 @@ const ProjectList = () => {
 
       {/* Form for creating a new project */}
       {showForm && (
-        <div className="card mb-3" style={{ maxWidth: '400px', margin: '0 auto', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: '5px' }}>
+        <div className="card mb-3 mt-3" style={{ maxWidth: '400px', margin: '0 auto', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: '5px' }}>
           <div className="card-body">
             <h5 className="card-title text-center mb-4">New Project</h5>
             <form onSubmit={formik.handleSubmit}>

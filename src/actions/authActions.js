@@ -4,7 +4,7 @@ import axios from 'axios';
 export const registerUser = (userData) => async (dispatch) => {
   try {
     // Send a POST request to the registration endpoint with user data
-    const response = await axios.post('https://gozealassigmentbackend.onrender.com/register', userData);
+    const response = await axios.post('http://localhost:8000/register', userData);
      // Dispatch success action with the response data
     dispatch({ type: 'REGISTER_SUCCESS', payload: response.data });
   } catch (error) {
@@ -24,7 +24,7 @@ export const loginUser = (userData) => async (dispatch) => {
   console.log(userData)
   try {
      // Send a POST request to the login endpoint with user data
-    const response = await axios.post('https://gozealassigmentbackend.onrender.com/login', userData);
+    const response = await axios.post('http://localhost:8000/login', userData);
     console.log(response)
       // Dispatch success action with the response data
     dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });

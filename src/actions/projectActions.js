@@ -27,7 +27,7 @@ export const fetchProjects = () => async dispatch => {
 export const fetchProject = (projectId) => async dispatch => {
   try {
     // Send a GET request to the specific project endpoint
-    const response = await axios.get(`https://gozealassigmentbackend.onrender.com/project/${projectId}`);
+    const response = await axios.get(`http://localhost:8000/project/${projectId}`);
     // Dispatch success action with the response data
     dispatch({ type: 'FETCH_PROJECT_SUCCESS', payload: response.data });
   } catch (error) {
@@ -40,7 +40,7 @@ export const fetchProject = (projectId) => async dispatch => {
 export const updateProject = (projectId, projectData) => async dispatch => {
   try {
     // Send a PUT request to update the project
-    const response = await axios.put(`https://gozealassigmentbackend.onrender.com/project/${projectId}`, projectData);
+    const response = await axios.put(`http://localhost:8000/project/${projectId}`, projectData);
     console.log(response.data); // Log the response from the server
      // Dispatch success action with the updated project data
     dispatch({ type: UPDATE_PROJECT_SUCCESS, payload: response.data });

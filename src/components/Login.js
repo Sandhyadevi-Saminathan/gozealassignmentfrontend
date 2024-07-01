@@ -60,7 +60,7 @@ const Login = () => {
                             id="email"
                             name="email"
                             type="email"
-                            className={form-control ${formik.errors.email ? 'is-invalid' : ''}}
+                            className={`form-control ${formik.errors.email ? 'is-invalid' : ''}`}
                             onChange={formik.handleChange}
                             value={formik.values.email}
                             placeholder="Enter your Email"
@@ -74,7 +74,7 @@ const Login = () => {
                             id="password"
                             name="password"
                             type="password"
-                            className={form-control ${formik.errors.password ? 'is-invalid' : ''}}
+                            className={`form-control ${formik.errors.email ? 'is-invalid' : ''}`}
                             onChange={formik.handleChange}
                             value={formik.values.password}
                             placeholder="Enter your password"

@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# Project Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+A full-stack project management system built with React, Redux, Node.js, and MongoDB.
 
-In the project directory, you can run:
+Table of Contents
 
-### `npm start`
+Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Prerequisites
 
-### `npm test`
+Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1.Overview
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This project is a comprehensive project management system designed to facilitate project creation, tracking, and management. It consists of a frontend built with React and Redux for state management, and a backend powered by Node.js and MongoDB to handle data storage and retrieval.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2.Features
 
-### `npm run eject`
+User Authentication:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Secure login with username and password validation.
+Error messages for invalid credentials and success messages for successful login.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Project Management:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+List Projects:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+View all projects in a list view upon successful login.
 
-## Learn More
+New Project:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create new projects with name, start date, due date, and default status (Open, In Progress, In Review, Closed).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+View Project Details:
 
-### Code Splitting
+View detailed information of each project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Edit Project:
 
-### Analyzing the Bundle Size
+Update project details such as name, due date, description, and status.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+3.Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Before you begin, ensure you have the following installed:
 
-### Advanced Configuration
+Node.js (version X.X.X)
+npm or yarn
+MongoDB
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+4.Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Follow these steps to set up and run the project locally:
 
-### `npm run build` fails to minify
+Clone the repository:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+bash
+Copy code
+git clone https://github.com/Sandhyadevi-Saminathan/gozealassignmentfrontend.git
+cd project-management-system
+
+Install dependencies:
+
+bash
+Copy code
+npm install
+# or
+yarn install
+
+
+Start the backend server (Node.js):
+
+bash
+Copy code
+cd backend
+npm start
+The backend server should be running on http://localhost:8000.
+
+Start the frontend development server (React):
+
+bash
+Copy code
+cd ..
+npm start
+# or
+yarn start
+The frontend should open automatically in your default browser at http://localhost:3000.
+
+Projects
+List Projects: Upon logging in, you can view all projects listed.
+New Project: Click on "New Project" to add a new project with details.
+View Project Details: Click on any project to view its detailed information.
+Edit Project: From the project details view, click "Edit" to modify project details.
+
+# Repo 
+
+Frontend Repo : https://github.com/Sandhyadevi-Saminathan/gozealassignmentfrontend
+
+Backend Repo: https://github.com/Sandhyadevi-Saminathan/gozealassigmentbackend
+
+FrontEnd Deployment URL:https://master--stellar-blancmange-40b20e.netlify.app/
+BackEnd Deployment URL : https://gozealassigmentbackend.onrender.com/

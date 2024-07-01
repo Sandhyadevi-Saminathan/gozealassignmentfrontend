@@ -6,7 +6,6 @@ import { loginUser } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Access navigate function
@@ -38,7 +37,7 @@ const Login = () => {
             console.log("Logged In")
             alert('Logged in successfully!'); 
             // Navigate to the project list page after successful login
-           navigate('/projectlist'); 
+         //   navigate('/projectlist'); 
           } catch (error) {
             alert(error.message); 
           }
@@ -61,7 +60,7 @@ const Login = () => {
                             id="email"
                             name="email"
                             type="email"
-                            className={`form-control ${formik.errors.email ? 'is-invalid' : ''}`}
+                            className={form-control ${formik.errors.email ? 'is-invalid' : ''}}
                             onChange={formik.handleChange}
                             value={formik.values.email}
                             placeholder="Enter your Email"
@@ -75,7 +74,7 @@ const Login = () => {
                             id="password"
                             name="password"
                             type="password"
-                            className={`form-control ${formik.errors.password ? 'is-invalid' : ''}`}
+                            className={form-control ${formik.errors.password ? 'is-invalid' : ''}}
                             onChange={formik.handleChange}
                             value={formik.values.password}
                             placeholder="Enter your password"

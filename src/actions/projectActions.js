@@ -12,16 +12,16 @@ import {
 const BASE_URL = 'https://gozealassigmentbackend.onrender.com';
 
 // Function to fetch all projects
-export const fetchProjects = () => async dispatch => {
+export const fetchUserProjects = (userId) => async dispatch => {
   try {
     // Send a GET request to the projects endpoint
-    const response = await axios.get(`${BASE_URL}/project`);
+    const response = await axios.get(`${BASE_URL}/api/projects/user-projects/${userId}`);
     console.log(response)
       // Dispatch success action with the response data
-    dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: response.data });
+      dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: response.data });
   } catch (error) {
      // Dispatch error action with the error payload
-    dispatch({ type: FETCH_PROJECTS_ERROR, payload: error });
+     dispatch({ type: FETCH_PROJECTS_ERROR, payload: error });
   }
 };
 
@@ -53,16 +53,13 @@ export const updateProject = (projectId, projectData) => async dispatch => {
 };
 
 // Function to add a new project
-export const addProject = (newProject) => async dispatch => {
+// Add a new project
+export const addProject = (newProject) => async (dispatch) => {
   try {
-    // Send a POST request to add a new project
-    const response = await axios.post(`${BASE_URL}/project`, newProject);
-    const addedProject = response.data; 
-    console.log(addedProject)
-    // Dispatch action to add project to Redux store
-    dispatch({ type: ADD_PROJECT, payload: addedProject });
+      const response = await axios.post(`${BASE_URL}/api/projects/`, newProject);
+      const addedProject = response.data.project;
+      dispatch({ type: ADD_PROJECT, payload: addedProject });
   } catch (error) {
-    console.error('Error adding project:', error);
-    
+      console.error('Error adding project:', error);
   }
 };

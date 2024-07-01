@@ -6,7 +6,7 @@ import {
   ADD_PROJECT
   
 } from '../actions/types';
-
+  
 // Initial state for the reducer
 const initialState = {
   project: null,

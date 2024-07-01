@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-//import { Link } from 'react-router-dom';
-import { addProject, fetchUserProjects } from '../actions/projectActions';
+import { Link } from 'react-router-dom';
+import { addProject, deleteProject, fetchUserProjects } from '../actions/projectActions';
 import { useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { FaEdit, FaTrashAlt } from 'react-icons/fa'; // Import icons for edit and delete
 
 const ProjectList = () => {
   const [showForm, setShowForm] = useState(false); // State to toggle form visibility
@@ -64,8 +65,8 @@ const ProjectList = () => {
     },
     onSubmit: async (values, { resetForm }) => {
       try {
-         const userId = localStorage.getItem('ID');
-         const projectWithUserId = { ...values, userId };
+        const userId = localStorage.getItem('ID');
+        const projectWithUserId = { ...values, userId };
         await dispatch(addProject(projectWithUserId)); // Dispatch addProject action with form values
         resetForm(); // Reset the form after successful submission
         setShowForm(false); // Hide the form after submission
@@ -81,11 +82,20 @@ const ProjectList = () => {
     return <h2 className="text-center mt-5">Loading...</h2>;
   }
 
+  // Delete a project
+  const handleDeleteProject = async (projectId) => {
+    try {
+      await dispatch(deleteProject(projectId));
+    } catch (error) {
+      console.error('Error deleting project:', error);
+    }
+  };
+
   // Render the ProjectList component with conditional rendering based on projects and form visibility
   return (
     <div className="container">
-      {/* Button to create new project */}
-      {projects.length === 0 && (
+      {/* Create New Project Button */}
+      {(projects.length === 0 || showForm) && (
         <div className="text-center mb-3">
           <button
             className="btn btn-primary mt-4"
@@ -105,12 +115,11 @@ const ProjectList = () => {
 
       {/* Form for creating a new project */}
       {showForm && (
-        <div className="card mb-3 mt-5" style={{ maxWidth: '400px', margin: '0 auto', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: '5px' }}>
+        <div className="card mb-3" style={{ maxWidth: '400px', margin: '0 auto', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: '5px' }}>
           <div className="card-body">
             <h5 className="card-title text-center mb-4">New Project</h5>
             <form onSubmit={formik.handleSubmit}>
-              {/* Form inputs */}
-              {/* Example input: Project Name */}
+              {/* Project Name */}
               <div className="form-group">
                 <label htmlFor="projectName">Project Name</label>
                 <input
@@ -128,7 +137,7 @@ const ProjectList = () => {
                 ) : null}
               </div>
 
-              {/* Example input: Start Date */}
+              {/* Start Date */}
               <div className="form-group">
                 <label htmlFor="startDate">Start by</label>
                 <DatePicker
@@ -147,7 +156,7 @@ const ProjectList = () => {
                 ) : null}
               </div>
 
-              {/* Example input: Due Date */}
+              {/* Due Date */}
               <div className="form-group">
                 <label htmlFor="dueDate">Due by</label>
                 <DatePicker
@@ -167,7 +176,7 @@ const ProjectList = () => {
                 ) : null}
               </div>
 
-              {/* Example input: Description */}
+              {/* Description */}
               <div className="form-group">
                 <label htmlFor="description">Description</label>
                 <textarea
@@ -184,7 +193,7 @@ const ProjectList = () => {
                 ) : null}
               </div>
 
-              {/* Example input: Status */}
+              {/* Status */}
               <div className="form-group">
                 <label htmlFor="status">STATUS</label>
                 <select
@@ -206,7 +215,7 @@ const ProjectList = () => {
                 ) : null}
               </div>
 
-              {/* Buttons for form actions */}
+              {/* Submit and Close Buttons */}
               <div className="text-center">
                 <button type="submit" className="btn btn-primary btn-sm" style={{ fontFamily: 'cursive' }}>
                   Create Project
@@ -220,38 +229,90 @@ const ProjectList = () => {
         </div>
       )}
 
-      {/* Render projects table if there are projects */}
+      {/* Projects Table */}
       {projects.length > 0 && !showForm && (
         <div className="card mt-3">
           <div className="card-body">
-            <table className="table table-hover">
-              <thead className="thead-dark">
-                <tr>
-                  {/* Table headers */}
-                  <th scope="col">Project Name</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">Due Date</th>
-                  <th scope="col">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* Render each project as a table row */}
-                {projects.map(project => (
-                  <tr key={project._id}>
-                    <td >{project.projectName}</td>
-
-                    <td>{project.startDate}</td>
-                    <td>{project.dueDate}</td>
-                    <td>{project.status}</td>
+            <div className="d-flex justify-content-between align-items-center mb-3">
+              <h5 className="mb-0">
+                <span className="mr-2">
+                  <i className="fa fa-folder-open"></i>
+                </span>
+                {projects.length} Projects
+              </h5>
+              <button
+                className="btn mt-3"
+                onClick={() => setShowForm(!showForm)}
+                style={{
+                  backgroundColor: 'white',
+                  color: 'blue',
+                  fontFamily: 'cursive',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  borderRadius: '5px'
+                }}
+              >
+                {showForm ? 'Close Form' : 'New Project +'}
+              </button>
+            </div>
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead className="thead-dark">
+                  <tr>
+                    <th style={{ width: '30%' }}>Project Name</th>
+                    <th style={{ width: '15%' }}>Start Date</th>
+                    <th style={{ width: '15%' }}>Due Date</th>
+                    <th style={{ width: '20%' }}>Status</th>
+                    <th style={{ width: '10%' }}>Actions</th> {/* Column for edit and delete buttons */}
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {projects.map((project) => (
+                    <tr key={project._id}>
+                      <td>
+                        <Link to={`/edit/${project._id}`} style={{ textDecoration: 'underline', color: 'black' }}>
+                          {project.projectName}
+                        </Link>
+                      </td>
+                      <td>{project.startDate}</td>
+                      <td>{project.dueDate}</td>
+                      <td>
+                        <div
+                          className={`badge ${
+                            project.status === 'Open'
+                              ? 'badge-primary'
+                              : project.status === 'In Progress'
+                              ? 'badge-warning'
+                              : project.status === 'In Review'
+                              ? 'badge-info'
+                              : 'badge-success'
+                          }`}
+                        >
+                          {project.status}
+                        </div>
+                      </td>
+                      <td>
+                        {/* Edit Button */}
+                        <Link to={`/edit/${project._id}`} className="btn btn-sm btn-outline-primary mr-2">
+                          <FaEdit /> Edit
+                        </Link>
+                        {/* Delete Button */}
+                        <button
+                          onClick={() => handleDeleteProject(project._id)}
+                          className="btn btn-sm btn-outline-danger"
+                        >
+                          <FaTrashAlt /> Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
 
-      {/* Display a message when there are no projects */}
+      {/* Message when no projects exist */}
       {!showForm && projects.length === 0 && (
         <div className="text-center mt-3">
           <p>No projects found. Click the button above to create a new project.</p>

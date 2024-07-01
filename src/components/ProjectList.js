@@ -70,7 +70,7 @@ const ProjectList = () => {
      
 
       {/* Create New Project Button */}
-      {(projects.length === 0 && !showForm) && (
+      {(projects.length === 0 && !showForm && !setLoading) && (
         <div className="text-center mb-3">
           <button
             className="btn btn-primary mt-4"

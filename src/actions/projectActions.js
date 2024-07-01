@@ -8,6 +8,8 @@ import {
   ADD_PROJECT 
 } from './types';
 
+
+
 // Base URL for backend
 const BASE_URL = 'https://gozealassigmentbackend.onrender.com';
 
@@ -25,18 +27,7 @@ export const fetchUserProjects = (userId) => async dispatch => {
   }
 };
 
-// Function to fetch a single project by ID
-export const fetchProject = (projectId) => async dispatch => {
-  try {
-    // Send a GET request to the specific project endpoint
-    const response = await axios.get(`${BASE_URL}/project/${projectId}`);
-    // Dispatch success action with the response data
-    dispatch({ type: 'FETCH_PROJECT_SUCCESS', payload: response.data });
-  } catch (error) {
-    // Dispatch error action with the error payload
-    dispatch({ type: FETCH_PROJECTS_ERROR, payload: error });
-  }
-};
+
 
 // Function to update a project by ID
 export const updateProject = (projectId, projectData) => async dispatch => {
@@ -56,7 +47,8 @@ export const updateProject = (projectId, projectData) => async dispatch => {
 
 export const addProject = (newProject) => async (dispatch) => {
   try {
-      const response = await axios.post(`${BASE_URL}/api/projects/`, newProject);
+   
+      const response = await axios.post(`${BASE_URL}/project/`, newProject);
       const addedProject = response.data.project;
       dispatch({ type: ADD_PROJECT, payload: addedProject });
   } catch (error) {

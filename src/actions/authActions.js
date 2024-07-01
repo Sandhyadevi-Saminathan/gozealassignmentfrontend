@@ -27,18 +27,13 @@ export const registerUser = (userData) => async (dispatch) => {
 export const loginUser = (userData) => async (dispatch) => {
   console.log('Login user data:', userData);
   try {
-    // Send a POST request to the login endpoint with user data
     const response = await axios.post(`${BASE_URL}/login`, userData);
     console.log('Login response:', response);
 
-    // Check if the response status is 200 (OK)
     if (response.status === 200) {
-      // Dispatch success action with the response data
       dispatch({ type: 'LOGIN_SUCCESS', payload: response.data });
-      // Return the response data
       return response.data;
     } else {
-      // Handle unexpected status codes
       const errorPayload = {
         message: 'Unexpected response status',
         status: response.status,
@@ -46,9 +41,9 @@ export const loginUser = (userData) => async (dispatch) => {
       };
       dispatch({ type: 'LOGIN_FAILURE', payload: errorPayload });
       console.log('Unexpected login response status:', response);
+      throw new Error('Unexpected response status');
     }
   } catch (error) {
-    // Handle login failure
     const errorPayload = {
       message: error.message,
       status: error.response ? error.response.status : null,
@@ -56,5 +51,6 @@ export const loginUser = (userData) => async (dispatch) => {
     };
     dispatch({ type: 'LOGIN_FAILURE', payload: errorPayload });
     console.log('Error during login:', error);
+    throw error; // Rethrow the error to be handled in the component
   }
 };

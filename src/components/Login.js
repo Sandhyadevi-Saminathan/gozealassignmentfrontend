@@ -27,22 +27,27 @@ const Login = () => {
         }
         return errors;
     },
-    onSubmit: async(values) => {
+    onSubmit: async (values) => {
+        setErrorMessage(null); // Clear previous errors
         try {
-            const userData = {
-                email: values.email,
-                password: values.password,
-            };
-            await dispatch(loginUser(userData));
-            console.log("Logged In")
-            alert('Logged in successfully!'); 
-            // Navigate to the project list page after successful login
-          navigate('/projectlist'); 
-          } catch (error) {
-            setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
-            console.log('Error during login:', error);
+          const userData = {
+            email: values.email,
+            password: values.password,
+          };
+          
+          const response = await dispatch(loginUser(userData));
+          if (response && response.token) {
+            console.log("Logged In");
+            alert('Logged in successfully!');
+            navigate('/projectlist');
+          } else {
+            throw new Error('Login failed, please check your credentials.');
           }
-    },
+        } catch (error) {
+          setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
+          console.log('Error during login:', error);
+        }
+      },
   });
 
   return (

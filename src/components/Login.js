@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
@@ -43,6 +43,7 @@ const Login = () => {
           console.log("Logged In");
           alert('Logged in successfully!');
           navigate('/projectlist');
+          resetForm(); // Reset form after successful login
         } else {
           throw new Error('Login failed, please check your credentials.');
         }
@@ -50,9 +51,24 @@ const Login = () => {
         setLoading(false); // Set loading to false if there's an error
         setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
         console.log('Error during login:', error);
+        
+        // Clear error message after 10 seconds
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 10000); // 10 seconds
       }
     },
   });
+
+  // Effect to reset form and clear error message after 10 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setErrorMessage(null);
+      formik.resetForm();
+    }, 10000); // 10 seconds
+
+    return () => clearTimeout(timer);
+  }, [errorMessage, formik]);
 
   return (
     <div className="container mt-5">

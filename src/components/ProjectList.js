@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchProjects,addProject, fetchUserProjects } from '../actions/projectActions';
+import { addProject, fetchUserProjects } from '../actions/projectActions';
 import { useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; 

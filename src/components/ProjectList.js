@@ -15,8 +15,17 @@ const ProjectList = () => {
  
 
   useEffect(() => {
-    dispatch(fetchProjects());
-    setLoading(false)
+    const fetchData = async () => {
+      try {
+        await dispatch(fetchProjects());
+        setLoading(false); // Set loading to false after fetching projects
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setLoading(false); // Ensure loading state is set to false on error too
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const formik = useFormik({

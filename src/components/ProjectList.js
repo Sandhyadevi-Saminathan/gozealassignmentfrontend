@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { addProject, fetchUserProjects } from '../actions/projectActions';
 import { useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
@@ -236,7 +236,8 @@ const ProjectList = () => {
                 {/* Render each project as a table row */}
                 {projects.map(project => (
                   <tr key={project._id}>
-                    <td>{project.projectName}</td>
+                    <td >{project.projectName}</td>
+
                     <td>{project.startDate}</td>
                     <td>{project.dueDate}</td>
                     <td>{project.status}</td>

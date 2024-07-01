@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Access navigate function
+  const [errorMessage, setErrorMessage] = React.useState(null);
 
 
   const formik = useFormik({

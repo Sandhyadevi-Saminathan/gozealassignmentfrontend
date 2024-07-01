@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { loginUser } from '../actions/authActions'; 
 import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
             console.log("Logged In")
             alert('Logged in successfully!'); 
             // Navigate to the project list page after successful login
-         //   navigate('/projectlist'); 
+           navigate('/projectlist'); 
           } catch (error) {
             alert(error.message); 
           }

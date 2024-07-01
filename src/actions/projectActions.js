@@ -48,7 +48,7 @@ export const updateProject = (projectId, projectData) => async dispatch => {
 export const addProject = (newProject) => async (dispatch) => {
   try {
    
-      const response = await axios.post(`${BASE_URL}/project/`, newProject);
+      const response = await axios.post(`${BASE_URL}/project/projects`, newProject);
       const addedProject = response.data.project;
       dispatch({ type: ADD_PROJECT, payload: addedProject });
   } catch (error) {

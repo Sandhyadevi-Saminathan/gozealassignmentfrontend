@@ -48,15 +48,16 @@ const Login = () => {
           throw new Error('Login failed, please check your credentials.');
         }
       } catch (error) {
-        setLoading(false); // Set loading to false if there's an error
+        // Set loading to false if there's an error
         setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
         console.log('Error during login:', error);
         
-        // Clear error message after 10 seconds
-        setTimeout(() => {
-          setErrorMessage(null);
-        }, 10000); // 10 seconds
-      }
+    //     // Clear error message after 10 seconds
+    //     setTimeout(() => {
+    //       setErrorMessage(null);
+    //       setLoading(false);
+    //     }, 5000); // 10 seconds
+   }
     },
   });
 
@@ -65,7 +66,8 @@ const Login = () => {
     const timer = setTimeout(() => {
       setErrorMessage(null);
       formik.resetForm();
-    }, 10000); // 10 seconds
+      setLoading(false);
+    }, 5000); // 10 seconds
 
     return () => clearTimeout(timer);
   }, [errorMessage, formik]);
@@ -85,11 +87,11 @@ const Login = () => {
               </div>
             )}
             {/* Loading message */}
-            {loading && (
+            {/* {loading && (
               <div className="alert alert-info mt-3 ml-5" style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
                 <span style={{ filter: 'blur(8px)' }}>Logging in...</span>
               </div>
-            )}
+            )} */}
             {/* Login form */}
             <form onSubmit={formik.handleSubmit}>
               <div className="form-group">

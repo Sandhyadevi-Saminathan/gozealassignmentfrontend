@@ -44,6 +44,7 @@ const Login = () => {
           console.log("Logged In");
          
           window.localStorage.setItem("ID", response.data.user._id)
+          console.log(response.data)
           alert('Logged in successfully!');
           navigate('/projectlist');
           resetForm(); // Reset form after successful login

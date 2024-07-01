@@ -37,7 +37,7 @@ const Login = () => {
             console.log("Logged In")
             alert('Logged in successfully!'); 
             // Navigate to the project list page after successful login
-         //   navigate('/projectlist'); 
+          navigate('/projectlist'); 
           } catch (error) {
             alert(error.message); 
           }

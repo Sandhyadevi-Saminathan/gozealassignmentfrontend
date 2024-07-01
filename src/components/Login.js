@@ -32,14 +32,14 @@ const Login = () => {
                 email: values.email,
                 password: values.password,
             };
-          
             await dispatch(loginUser(userData));
             console.log("Logged In")
             alert('Logged in successfully!'); 
             // Navigate to the project list page after successful login
           navigate('/projectlist'); 
           } catch (error) {
-            alert(error.message); 
+            setErrorMessage(error.response?.data?.message || 'Login failed. Please check your credentials.');
+            console.log('Error during login:', error);
           }
     },
   });

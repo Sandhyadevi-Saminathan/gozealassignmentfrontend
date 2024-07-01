@@ -83,6 +83,7 @@ const Login = () => {
                         />
                         <span className="text-danger">{formik.errors.password}</span>
                     </div>
+                    {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
                     <div className="form-group">
                         <button type="submit" className="btn btn-info rounded col-lg-12 mt-4">Log in</button>
                     </div>

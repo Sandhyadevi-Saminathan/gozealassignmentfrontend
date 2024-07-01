@@ -264,7 +264,7 @@ const ProjectList = () => {
 
 
       {/* Message when no projects exist */}
-      {!showForm && projects.length === 0 && (
+      {!showForm && !setLoading && projects.length === 0 && (
         <div className="text-center mt-3">
           <p>No projects found. Click the button above to create a new project.</p>
         </div>

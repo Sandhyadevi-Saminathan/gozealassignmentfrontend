@@ -68,6 +68,7 @@ const ProjectList = () => {
         const userId = localStorage.getItem('ID');
         const projectWithUserId = { ...values, userId };
         await dispatch(addProject(projectWithUserId)); // Dispatch addProject action with form values
+       alert("Project Added Successfully")
         resetForm(); // Reset the form after successful submission
         setShowForm(false); // Hide the form after submission
         // refetch projects here if needed

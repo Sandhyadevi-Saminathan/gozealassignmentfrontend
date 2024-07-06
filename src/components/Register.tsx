@@ -1,12 +1,17 @@
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+interface FormData {
+  username: string;
+  email: string;
+  password: string;
+}
+
+const Register: React.FC = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     username: '',
     email: '',
     password: '',
@@ -14,7 +19,7 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -22,11 +27,15 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(registerUser(formData));
-    alert('Registered successfully!');
-    navigate('/')
+    const response = await dispatch<any>(registerUser(formData));
+    if (response && response.success) {
+      alert('Registered successfully!');
+      navigate('/');
+    } else {
+      alert('Registration failed!');
+    }
   };
 
   return (

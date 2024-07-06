@@ -1,0 +1,154 @@
+
+.form-background {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form-container {
+    margin-top: 100px;
+    background-color: #f9f9fb;
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%; /* Adjust width as needed */
+  }
+
+  
+  .custom-margin {
+    margin-right: 10px; /* Adjust this value as needed for the gap */
+  }
+  
+  .custom-margin + .custom-margin {
+    margin-left: 10px; /* Adjust this value as needed for the gap */
+  }
+
+
+.project-list-container {
+    width: 80%;
+    margin: 100px auto 20px;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden; /* Ensure no overflow of ::before and ::after */
+    background-color: #f9f9fb; 
+    padding: 20px 0px 0px 20px; /* Adjust padding as needed */
+    max-height: none; /* Allow dropdown to expand to fit content */
+    overflow-y: visible; /* Ensure no scrollbar is shown */
+}
+
+.project-list-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px; /* Adjust as needed for the width of the colored side */
+    height: 100%;
+    background-color: #f9f9fb; /* Ensure this matches the background color */
+    border-radius: 8px 0 0 8px; /* Rounded corner on the left */
+}
+
+.project-list-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; /* Adjust height as needed */
+    background-color: #f9f9fb; /* Ensure this matches the background color */
+    border-radius: 0 0 8px 8px; /* Rounded corner on the bottom */
+}
+
+/* New project link */
+.new-project {
+    color: #9d95ef;
+    font-weight: bold;
+    margin: 20px 0;
+    display: inline-block;
+}
+
+/* Project table */
+.project-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    
+    
+}
+
+/* Table header */
+.project-table th {
+    background-color: #F1F3F4;
+    padding: 12px 15px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #757575;
+    font-size: 14px;
+   
+}
+
+/* Table rows */
+.project-table td {
+    padding: 12px 15px;
+    border-bottom: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    vertical-align: middle;
+    border-bottom: 1px solid #559cb4;
+}
+
+
+
+
+/* Status badges */
+.status-badge {
+    position: relative; /* Position relative for dropdown */
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #F1F3F4;
+    color: black;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100px; /* Fixed width */
+    cursor: pointer; /* Cursor pointer for dropdown */
+  }
+  .centered-cell {
+    text-align: center;
+  }
+  
+  .dropdown-icon {
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .status-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1;
+  }
+  
+ 
+  
+  .status-item {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .status-item:hover {
+    background-color: lightgrey; /* Highlight on hover */
+  }
+
+
+/* Header and Footer */
+.header-footer {
+    color: #6b5ae9c0;
+    font-weight: bold;
+    margin: 10px 0;
+}

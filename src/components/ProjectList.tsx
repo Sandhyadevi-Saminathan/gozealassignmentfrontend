@@ -1,16 +1,15 @@
-// ProjectList.tsx
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addProject, fetchUserProjects } from '../actions/projectActions';
 import { useFormik } from 'formik';
 import { FaChevronCircleRight } from 'react-icons/fa';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ProjectList.css';
-import { Project, RootState } from '../actions/interfaces'; // Adjust as per your project type definition
-import { FaProjectDiagram } from 'react-icons/fa';
+import { Project, RootState } from '../actions/interfaces'; 
+
 
 const ProjectList: React.FC = () => {
 console.log("inside project");

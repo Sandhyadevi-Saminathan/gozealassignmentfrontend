@@ -14,7 +14,7 @@ interface LoginResponse {
   token: string;
   user: {
     _id: string;
-    // Add other user properties here as needed
+   
   };
 }
 
@@ -24,7 +24,7 @@ interface RegisterResponse {
     _id: string;
     username: string;
     email: string;
-    // Add other user properties here as needed
+    
   };
 }
 

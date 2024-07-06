@@ -10,7 +10,7 @@ import {
   ADD_PROJECT_SUCCESS,
   ADD_PROJECT_ERROR,
 } from './types';
-import { Project } from './interfaces'; // Adjust path as needed
+import { Project } from './interfaces'; 
 
 const BASE_URL = 'https://gozealassigmentbackend.onrender.com';
 

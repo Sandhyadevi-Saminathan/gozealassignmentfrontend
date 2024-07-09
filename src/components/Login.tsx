@@ -30,8 +30,8 @@ const Login: React.FC = () => {
           email: values.email,
           password: values.password,
         };
-        console.log('Submitting login form', userData);
-        const response = await dispatch<any>(loginUser(userData)); // Dispatch with any as the argument
+     
+        const response = await dispatch<any>(loginUser(userData)); 
 
         setLoading(false);
 
@@ -40,10 +40,10 @@ const Login: React.FC = () => {
           window.localStorage.setItem('ID', response.user._id);
           alert('Logged in successfully!');
           navigate('/projectlist');
-          resetForm();
+          
         } else {
           throw new Error('Login failed, please check your credentials.');
-          formik.resetForm();
+          
         }
       } catch (error: any) { // Explicitly type error as any or specify the expected error type
         setErrorMessage(
@@ -52,6 +52,9 @@ const Login: React.FC = () => {
         );
         console.log('Error during login:', error);
         
+      }finally {
+        resetForm();
+        setLoading(false);
       }
     },
   });

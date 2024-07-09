@@ -1,4 +1,4 @@
-import { fetchProject } from '../actions/projectActions';
+import { fetchProject } from '../src/actions/projectActions';
 
 // Declare global to avoid TypeScript error
 declare var global: any;

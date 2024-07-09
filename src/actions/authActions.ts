@@ -45,9 +45,11 @@ export const loginUser = (userData: { email: string; password: string }) => asyn
   dispatch: Dispatch<any>
 ) => {
   try {
+    console.log('Dispatching LOGIN_REQUEST');
     const response = await axios.post<LoginResponse>(`${BASE_URL}/login`, userData);
-
+    console.log('Response received', response);
     if (response.status === 200) {
+      console.log('Login successful', response.data);
       dispatch({ type: LOGIN_SUCCESS, payload: response.data });
       return response.data;
     } else {
@@ -56,11 +58,13 @@ export const loginUser = (userData: { email: string; password: string }) => asyn
         status: response.status,
         data: response.data,
       };
+      console.log('Unexpected response status', errorPayload);
       dispatch({ type: LOGIN_FAILURE, payload: errorPayload });
       throw new Error('Unexpected response status');
     }
   } catch (error) {
     const errorMessage = getErrorMessage(error);
+    console.log('Login failed', errorMessage);
     dispatch({ type: LOGIN_FAILURE, payload: { message: errorMessage } });
     throw new Error(errorMessage);
   }

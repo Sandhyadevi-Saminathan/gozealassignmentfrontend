@@ -30,7 +30,7 @@ const Login: React.FC = () => {
           email: values.email,
           password: values.password,
         };
-
+        console.log('Submitting login form', userData);
         const response = await dispatch<any>(loginUser(userData)); // Dispatch with any as the argument
 
         setLoading(false);
@@ -43,12 +43,15 @@ const Login: React.FC = () => {
           resetForm();
         } else {
           throw new Error('Login failed, please check your credentials.');
+          formik.resetForm();
         }
       } catch (error: any) { // Explicitly type error as any or specify the expected error type
         setErrorMessage(
           error.response?.data?.message || 'Login failed. Please check your credentials.'
+          
         );
         console.log('Error during login:', error);
+        
       }
     },
   });
@@ -56,9 +59,8 @@ const Login: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setErrorMessage(null);
-      formik.resetForm();
       setLoading(false);
-    }, 10000); // 10 seconds
+    }, 3000); // 3 seconds
 
     return () => clearTimeout(timer);
   }, [errorMessage, formik]);

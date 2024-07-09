@@ -1,16 +1,20 @@
-
+// updateProject.test.ts
 
 // Import necessary modules and types
-import { Project } from '../actions/interfaces'; // Adjust the path to your project type definition
-import { addProject } from '../actions/projectActions'; // Adjust the path to your project actions
+import { Project } from '../src/actions/interfaces'; 
+import { updateProject } from '../src/actions/projectActions'; 
+
+// Declare global to avoid TypeScript error
+declare var global : any;
 
 describe('Project Actions', () => {
-    describe('createProject', () => {
-        it('should create project successfully with valid data', async () => {
+    describe('updateProject', () => {
+        it('should update project successfully with valid data', async () => {
             // Initialize projectData with a valid object
-            const projectData: Omit<Project, '_id'> = {
-                projectName: 'Test Project',
-                description: 'Test Description',
+            const projectId = 'projectId123'; // Example, provide a valid projectId
+            const projectData: Partial<Project> = {
+                projectName: 'Updated Test Project',
+                description: 'Updated Test Description',
                 startDate: new Date().toISOString(), // Convert Date to ISO string
                 userId: 'user123', // Example, provide a valid userId
                 dueDate: '2024-07-31', // Example, provide a valid dueDate
@@ -22,7 +26,7 @@ describe('Project Actions', () => {
             const dispatch = jest.fn();
 
             // Execute the action creator function with mock dispatch and projectData
-            await addProject(projectData)(dispatch);
+            await updateProject(projectId, projectData)(dispatch);
 
             // Add assertions or expectations based on your testing requirements
             // For example, you might check if dispatch was called with the correct action type or payload

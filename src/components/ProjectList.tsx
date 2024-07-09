@@ -248,7 +248,7 @@ console.log("LOADING",loading);
               <button type="submit" className="btn btn-primary mr-2" disabled={formik.isSubmitting}>
                 Save
               </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setShowForm(false)}>
+              <button type="button" className="btn btn-secondary ml-5" onClick={() => setShowForm(false)}>
                 Back
               </button>
             </div>

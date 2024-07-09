@@ -11,7 +11,12 @@
     "isolatedModules": false,
     "resolveJsonModule": true,
     "noEmit": true,
-    "types": ["jest", "node"]
+    "types": ["jest"],
+    "lib": ["dom", "es2015"],  // Ensure 'es2015' is included
+
   },
-  "include": ["src"]
+  "jest": {
+    "preset": "ts-jest"
+  },
+  "include": ["src","tests"]
 }
